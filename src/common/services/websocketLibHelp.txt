@@ -1,0 +1,115 @@
+POUZITI DRIVERU
+---------------------
+import * as WSUTILS from 'websocket-min.js';
+
+K dispozici je: wsclient a potom objekty:
+action s vlastnostmi:   GET, GET_ALL, ADD, MODIFY, REMOVE, BIND, UNBIND pro kontrolu akce (push)
+connectionState:        CONNECTING, CONNECTED, CLOSED, ERROR (to si ani nejsem jisty, jestli nekde pouzijes)
+
+Po import websocket-min.js by mela byt vytvorena instance (singleton). Inicializace probiha touto strukturou:
+
+wsclient.create({
+    secure: true/false,
+    host:   "localhost",
+    port:   4001,
+});
+
+Defaultni hodnoty jsou nastaveny. Jde to zavolat i s prazdnym objektem - init hodnot: false, localhost, 4000.
+Pokud se vse provede spravne, tak se objekt incializuje a rovnou se pripoji. Zaregistrovat si muzes callbacky:
+
+wsclient.onOpen(function(){
+    // TODO
+});
+
+wsclient.onClose(function(){
+    // TODO
+});
+
+wsclient.opened() navraci true/false, jestli jsi pripojeny, nebo ne.
+Pokud se stane, ze si nezkontrolujes stav aplikace nebo neregistrujes callbacky, tak kazda zprava, kterou v tu chvili
+odesles se ulozit do nejakeho bufferu a jakmile se pripojis, tak se vsechny odeslou (da se na to spolehnout a osetrit
+tedy jen to, ze se neco nepovede). Pokud je neco spatne s pripojenim, vyskoci:
+
+wsclient.onError(function(){
+    // TODO
+});
+
+API:
+------------------
+Ziskani dat: URI je zacatek cesty. Pattern je cesta, od ktere se zacina skladat
+JSON. Takze pokud je URI="/data" a pattern="id_1", tak vysledny JSON bude objekt, ktery bude zacinat {id_1: { ... }}
+
+Pokud chces vybrat vse, da se pouzivat hvezdickova notace:
+uri="/data", pattern="*/title" vybere vsechno ze slozky data a navrati to ve
+formatu {id_1: {title: ....}, id_2: {title: ....}, ...}
+
+error = {
+    status: number, // status 0 znamena uspech
+    message: string
+};
+
+wsclient.get(uri, pattern, function(response, error){
+    // TODO
+});
+
+Pridavani dat: Na urcitou URI ukladas objekt. Logika je stejna. JSON se parsuje a
+kazda dvojice klic:objekt se uklada jako nova slozka a dvojice klic:hodnota(pole) se ulozi jako soubor.
+
+wsclient.add(uri, content, function(response, error){
+    // TODO
+    // response ti nejspise ted bude vracet prazdny objekt. To ignoruj
+    // i u modify. To je neco, co bude v pristi verzi uplne vymazano, ale jelikoz to
+    // ma zatim spoustu zavislosti, nemuzu to jen tak smazat :)
+});
+
+Modifikace: Data musi existovat, aby sla modifikovat!!!! Logika contentu je zase stejna.
+
+wsclient.modify(uri, content, function(response, error) {
+    // TODO
+});
+
+Smaze se cokoli, co je na urcite URI. Bud slozka, nebo soubor(y)
+wsclient.remove(uri, function(error){
+    // TODO
+});
+
+Hlidani zmen na urcite adrese: Pripojis si konkrektni adresu, na ktere chces naslouchat zmeny. Server si zaregistruje, co chces posilat a bude ti zmeny posilat (muze to byt soubor/slozka).
+
+Response callback ti vrati, zda se povedl bind a pripadne ti posle vsechna data z konkretni URI (jako kdybys poslal GET).
+wsclient.bind(uri, function(response, error){}, function(push_message){
+
+   // PUSH MESASGE MA TVAR:
+   // {action: struktura action, content: { }, location: presna lokace zmeny (v pripade, ze naslouchas na slozku)}
+
+   //remove: content={}, location = dulezity udava co bylo smazano
+   //add: content={... data co byla vytvorena}, locatin = kde presne ve sledovanem stromu bylo pridano
+   //modify
+
+});
+
+Odhlaseni odberu:
+wsclient.unbind(uri, function(error){
+    // TODO
+});
+
+wsclient.close() explicitne ukonci spojeni.
+
+
+TESTOVACI DB:
+------------------
+.
+└── data
+    ├── id_1
+    │   ├── desc
+    │   ├── sensor
+    │   │   └── serial2
+    │   │       └── value
+    │   ├── time
+    │   └── title
+    └── id_2
+        ├── desc
+        ├── sensor
+        │   └── serial1
+        │       └── value
+        ├── time
+        └── title

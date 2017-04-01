@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="160">
+    <desc iVinci="yes" version="4.6" gridStep="1" showGrid="no" snapToGrid="no" codePlatform="0"/>
+    <g id="Layer1" name="final" opacity="1">
+        <g id="Shape1">
+            <desc shapeID="1" type="0" basicInfo-basicType="0" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-62,-69.5,124,139)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,1,221.5,80)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
+            <path id="shapePath1" d="M159.5,32 C172.5,18.5 191,10.5 211,10.5 C251,10.5 283,42.5 283.5,82.5 L283.5,125.5 C283.5,139 272.5,149.5 259,149.5 L258.5,149.5 C251,149.5 244,149 238.5,147.5 C239,147.5 239,147.5 239.5,147.5 C246,147.5 251.5,137.5 251.5,125.5 L251.5,82.5 C251,60 233.5,42.5 211,42.5 C195.5,42.5 182,51 175,64 C172.5,52 167,41 159.5,32 Z" style="stroke:none;fill-rule:evenodd;fill:#5a5b5b;fill-opacity:1;"/>
+        </g>
+        <g id="Shape2">
+            <desc shapeID="2" type="0" basicInfo-basicType="0" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-79,-69.5,158,139)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,1,89.5,80)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
+            <path id="shapePath2" d="M55.5,125.5 C55.5,139 44.5,149.5 31,149.5 L30.5,149.5 C23,149.5 16,149 10.5,147.5 C11,147.5 11,147.5 11.5,147.5 C18,147.5 23.5,137.5 23.5,125.5 L23.5,82.5 C24,42.5 56,10.5 96,10.5 C136,10.5 168,42.5 168.5,82.5 L168.5,125.5 C168.5,139 157.5,149.5 144,149.5 L143.5,149.5 C136,149.5 129,149 123.5,147.5 C124,147.5 124,147.5 124.5,147.5 C131,147.5 136.5,137.5 136.5,125.5 L136.5,82.5 C136,60 118.5,42.5 96,42.5 C73.5,42.5 56,60 55.5,82.5 L55.5,125.5 Z" style="stroke:none;fill-rule:evenodd;fill:#2e75bc;fill-opacity:1;"/>
+        </g>
+    </g>
+</svg>
