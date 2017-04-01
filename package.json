@@ -1,8 +1,7 @@
 {
-  "name": "mtrSim",
+  "name": "mtrsim",
   "version": "0.1.0",
   "private": true,
-  "root": "build/",
   "devDependencies": {
     "react-scripts": "0.9.0"
   },
