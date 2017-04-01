@@ -1,1 +1,1 @@
-## mtrSim - Simulator for myototnometr
+## mtrSim - Simulator for myotonometr
