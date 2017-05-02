@@ -7,8 +7,8 @@ import * as ws from './services/index';
 function mapStateToProps(store) { return { sim: store.simulator }; }
 
 class Simulator extends React.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
 
         this.state = {move: 'none', chartData: []};
         this.startBtn = this.startBtn.bind(this);
@@ -16,9 +16,10 @@ class Simulator extends React.Component {
     }
     componentDidUpdate(){
         if (this.props.sim.status === 2 && this.props.sim.writer === 0){
+            console.log('a');
             ws.modifySimulator({writer: 1, progress: 0});
             this.setState({move: 'down'});
-            this.moveTimeDown(0);
+            this.moveTimeDown(10);
         }
     }
     startBtn(){
