@@ -25,20 +25,16 @@ class Simulator extends React.Component {
         if (this.props.sim.status === 1){
             ws.modifySimulator({status: 2, writer: 1, progress: 0});
             this.setState({move: 'down'});
-            this.moveTimeDown(0);
+            this.moveTimeDown(10);
         }
     }
     createMeas(){ ws.modifySimulator( {status: 1, writer: 1, speed: 5, depth: 5, progress: 0} ); }
     moveTimeUp(time){
-        let pro = 100 - time*4;
-        ws.modifySimulator({progress: pro});
-        if (time === 0){
+        setTimeout(()=>{
             let data = this.createData();
             this.setState({move: 'nope', chartData: data});
             ws.modifySimulator({status: 0, writer: 1, progress: 100, data: data});
-        }else{
-            setTimeout(()=>{ this.moveTimeUp(time-2); },1000);
-        }
+        },time*250);
     }
     meas(){
         ws.modifySimulator({status: 3, writer: 1, progress: 40});
@@ -50,9 +46,7 @@ class Simulator extends React.Component {
         },time*1000);
     }
     moveTimeDown(time){
-        ws.modifySimulator({progress: time*4});
-        if (time === 10) { this.meas(); }
-        else { setTimeout(()=>{ this.moveTimeDown(time+1); },1000); }
+        setTimeout(()=>{ this.meas(); }, time*500);
     }
     createData() {
         let ar = [], lenght = Math.floor(Math.random() * 20) + 5 ;
@@ -60,7 +54,6 @@ class Simulator extends React.Component {
         return ar;
     }
     render() {
-        console.log(this.props.sim)
         const statusText = ['Waiting for new measurement', 'Press start btn', 'Measurement in progress(move down)',
             'Measurement in progress(measurement)', 'Measurement in progress(move up)'];
         const noProgress = (
@@ -78,7 +71,8 @@ class Simulator extends React.Component {
             <legend>Myotonometer simulator</legend>
             <p>Status: {statusText[this.props.sim.status]}</p>
             <p>Profile: {this.props.sim.profile}, speed: {this.props.sim.speed}, depth: {this.props.sim.depth},
-                indentor: {this.props.sim.indentor} </p>
+                indentor: {this.props.sim.indentor}, {this.props.sim.date} </p>
+            <p>Move: {this.state.move}</p>
             <p>Progress: <progress value={this.props.sim.progress} max="100" /></p>
 
         </fieldset>
