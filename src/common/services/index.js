@@ -16,32 +16,6 @@ export function createWs(secure, host, port, s) {
     },1000);
 }
 /**
- * Change value in DB ( /data/controller/status )
- * @param  {int} status      Integer define status of measurement
- */
-export function modifySimulatorStatus(status) {
-    ws.wsclient.modify('/data/myotonometer', {status: status, writer: 1}, (response, error) => {
-        if (error.status === 0){
-            store.dispatch(changeSimulator(response));
-        } else {
-            console.log(error.status);
-        }
-    });
-}
-/**
- * Change value in DB ( /data/controller/progress )
- * @param  {int} progress      progress bar value
- */
-export function modifySimulatorProgress(progress) {
-    ws.wsclient.modify('/data/myotonometer', {progress: progress, writer: 1}, (response, error) => {
-        if (error.status === 0){
-            store.dispatch(changeSimulator(response));
-        } else {
-            console.log(error.status);
-        }
-    });
-}
-/**
  * Change value in DB ( /data/controller/ )
  * @param  {Object} Obj      object of value
  */
@@ -53,7 +27,4 @@ export function modifySimulator(obj) {
             console.log(error.status);
         }
     });
-}
-export function get() {
-    ws.wsclient.get('/data/myotonometer', '*', (r,e)=>{console.log('get',r);});
 }

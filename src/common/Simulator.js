@@ -55,6 +55,7 @@ class Simulator extends React.Component {
         return ar;
     }
     render() {
+        console.log(this.props.sim);
         const statusText = ['Waiting for new measurement', 'Press start btn', 'Measurement in progress(move down)',
             'Measurement in progress(measurement)', 'Measurement in progress(move up)'];
         const noProgress = (
